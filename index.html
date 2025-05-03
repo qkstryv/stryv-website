@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stryv - AI Fitness Coach | Join the Waitlist</title>
+    <!-- SEO Description -->
+    <meta name="description" content="Get early access to Stryv, the revolutionary AI fitness app that personalizes workouts, tracks progress in real-time, and provides intelligent analytics. Join the waitlist!">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/loading_screen_icon.png" type="image/png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -226,7 +231,7 @@
              z-index: 5;
         }
 
-        /* Navigation Styles */
+        /* Navigation Styles (Reverted) */
         #main-nav {
             transition: background-color 0.4s ease-out, border-color 0.4s ease-out, box-shadow 0.4s ease-out;
             background-color: transparent;
@@ -235,17 +240,15 @@
         }
         #main-nav.nav-scrolled {
             background-color: var(--dark-card-bg);
-            border-bottom-color: #374151; /* border-gray-700 */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            border-bottom-color: #374151;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        /* Bolder Logo */
         #main-nav .nav-logo {
-             font-weight: 800; /* font-extrabold */
+             font-weight: 800;
         }
-         /* Link Styling */
         #main-nav .nav-link {
             transition: color 0.2s ease-in-out;
-            font-weight: 600; /* semibold */
+            font-weight: 600;
             padding: 5px 0;
             position: relative;
         }
@@ -257,7 +260,7 @@
             display: block;
             margin-top: 2px;
             right: 0;
-            background: #3B82F6; /* accent-blue */
+            background: #3B82F6;
             transition: width .3s ease;
             -webkit-transition: width .3s ease;
         }
@@ -314,11 +317,24 @@
              margin-bottom: 1.25rem; /* mb-5 */
              color: #3B82F6; /* accent-blue */
              transition: transform 0.3s ease, color 0.3s ease;
+             /* Center image icon horizontally */
+             display: inline-block; 
+             line-height: 1; /* Ensure container height matches icon/img */
+        }
+        .feature-icon img {
+             height: 3rem; /* Match FA icon size */
+             width: auto;
+             display: inline-block; /* Needed for transform */
+             transition: transform 0.3s ease;
         }
 
         .feature-card:hover .feature-icon {
             transform: scale(1.15);
             color: #60A5FA; /* Lighter blue on hover */
+        }
+         .feature-card:hover .feature-icon img {
+            transform: scale(1.15); /* Apply scale to image too */
+            /* Optional: Add filter for hover effect? filter: brightness(1.2); */
         }
 
         .feature-title {
@@ -336,27 +352,39 @@
         .section-title-enhanced {
              letter-spacing: 0.05em; /* tracking-wide */
         }
+
+        /* Gradient for Stryv name in text */
+        .stryv-text-gradient {
+            background: linear-gradient(90deg, #818CF8, #60A5FA); /* Lighter blue gradient */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700; /* Bold */
+        }
     </style>
 </head>
 <body class="text-gray-200">
     <!-- Navigation -->
-    <nav id="main-nav" class="fixed w-full z-50 transition-all duration-300 border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <span class="nav-logo text-3xl stryv-gradient">S<span class="try-gradient">try</span>v</span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="nav-link text-gray-300">Features</a>
-                    <a href="#waitlist" class="nav-link text-gray-300">Get Access</a>
-                    <a href="#legal" class="nav-link text-gray-300">Legal</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+     <nav id="main-nav" class="fixed w-full z-50 transition-all duration-300 border-b">
+         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <!-- Reverted layout -->
+             <div class="flex justify-between h-16 items-center">
+                 <div class="flex items-center">
+                     <span class="nav-logo text-3xl stryv-gradient">S<span class="try-gradient">try</span>v</span>
+                 </div>
+                 <div class="hidden md:flex items-center space-x-8">
+                     <a href="#features" class="nav-link text-gray-300">Features</a>
+                     <a href="#waitlist" class="nav-link text-gray-300">Get Access</a>
+                     <a href="#legal" class="nav-link text-gray-300">Legal</a>
+                 </div>
+                  <!-- Consider adding mobile menu button back here if needed -->
+                 <!-- <div class="md:hidden"> ... </div> -->
+             </div>
+         </div>
+     </nav>
 
     <!-- Hero Section / Waitlist -->
-    <section id="waitlist" class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden bg-hero-bg">
+    <section id="waitlist" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 md:pt-16 md:pb-0 overflow-hidden bg-hero-bg">
         <!-- Background Overlays -->
         <div class="hero-overlay-1"></div>
         <div class="hero-overlay-2"></div>
@@ -389,25 +417,25 @@
         </div>
 
         <!-- Content -->
-        <div class="hero-content max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+        <div class="hero-content max-w-3xl mx-auto px-4 md:px-6 py-12 text-center">
              <!-- Optional Badge -->
              <!-- <div data-aos="fade-up" data-aos-delay="0" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"> ... </div> -->
 
              <div data-aos="fade-up" data-aos-delay="100">
-                <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6 md:mb-8 tracking-tight">
-                    <span class="block text-gradient-h1-main shimmer-effect">Unlock Your Potential</span>
-                    <span class="block text-gradient-h1-sub mt-2">AI-Powered Fitness Coaching</span>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 md:mb-8 tracking-tight">
+                    <span class="block text-gradient-h1-main shimmer-effect">Train Smarter, Not Harder.</span>
+                    <span class="block text-gradient-h1-sub mt-2">AI Fitness Coaching with <span class="stryv-text-gradient">Stryv</span></span>
                 </h1>
              </div>
 
             <div data-aos="fade-up" data-aos-delay="200">
-                <p class="text-base sm:text-lg md:text-xl text-white/60 mb-10 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
-                    Join the waitlist for Stryv. Get personalized workouts, real-time form analysis, and intelligent progress tracking.
+                <p class="text-base sm:text-lg text-white/70 mb-10 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-2 sm:px-4">
+                    Stop guessing, start progressing. <span class="stryv-text-gradient">Stryv</span> delivers hyper-personalized workout plans, automatic exercise logging, and intelligent performance analytics. Join the waitlist for early access.
                 </p>
              </div>
 
              <!-- Waitlist Form -->
-             <div class="mt-10 max-w-md mx-auto" data-aos="fade-up" data-aos-delay="300">
+             <div class="mt-8 max-w-md mx-auto" data-aos="fade-up" data-aos-delay="300">
                 <form class="flex shadow-lg">
                     <input type="email" placeholder="Enter your email address" class="waitlist-input flex-grow px-4 py-3 text-white border rounded-l-xl focus:outline-none focus:border-blue-500 placeholder-gray-400 text-lg" required>
                     <button type="submit" class="rainbow-button py-3 font-bold rounded-r-xl">
@@ -417,7 +445,7 @@
             </div>
 
              <!-- App Store Buttons -->
-              <div class="flex justify-center space-x-4 mt-12 opacity-70" data-aos="fade-up" data-aos-delay="400">
+              <div class="flex justify-center space-x-4 mt-10 opacity-70" data-aos="fade-up" data-aos-delay="400">
                  <a href="#" class="bg-gray-800 text-white px-5 py-2 rounded-lg inline-flex items-center cursor-not-allowed transition-opacity hover:opacity-90" title="Coming Soon to App Store">
                     <i class="fab fa-apple text-2xl mr-2"></i>
                     <div class="text-left">
@@ -449,9 +477,11 @@
                 </div>
                 <!-- Card 2 -->
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon"><i class="fas fa-video"></i></div>
-                    <h3 class="feature-title">Real-Time Form Analysis</h3>
-                    <p class="feature-description">Our AI analyzes your movement via camera to ensure correct form and prevent injury.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Logging & Tracking</h3>
+                    <p class="feature-description">Automatically log sets, reps, weight, and track your workout progress seamlessly.</p>
                 </div>
                  <!-- Card 3 -->
                 <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
@@ -471,12 +501,12 @@
                 <div class="p-6 rounded-lg dark-card border border-gray-700 hover:border-blue-500 transition-colors duration-300" data-aos="fade-right">
                     <h3 class="text-xl font-semibold text-white mb-4">Privacy Policy</h3>
                     <p class="text-gray-400 mb-4">Your data privacy is paramount. See how we protect it.</p>
-                    <a href="privacy-policy.html" target="_blank" class="accent-blue hover:text-blue-400 font-medium">Read Privacy Policy →</a>
+                    <a href="privacy-policy.html" class="accent-blue hover:text-blue-400 font-medium">Read Privacy Policy →</a>
                 </div>
                 <div class="p-6 rounded-lg dark-card border border-gray-700 hover:border-blue-500 transition-colors duration-300" data-aos="fade-left">
                     <h3 class="text-xl font-semibold text-white mb-4">Terms of Service</h3>
                     <p class="text-gray-400 mb-4">The rules of engagement for using Stryv.</p>
-                    <a href="terms-of-service.html" target="_blank" class="accent-blue hover:text-blue-400 font-medium">Read Terms of Service →</a>
+                    <a href="terms-of-service.html" class="accent-blue hover:text-blue-400 font-medium">Read Terms of Service →</a>
                 </div>
             </div>
         </div>
