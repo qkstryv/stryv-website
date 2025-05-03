@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stryv - AI Fitness Coach | Join the Waitlist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Rainbow Colors (HSL) */
+            --color-1: 343 89% 60%; /* Pinkish Red */
+            --color-2: 39 96% 54%;  /* Orange */
+            --color-3: 60 95% 55%;  /* Yellow */
+            --color-4: 140 78% 58%; /* Green */
+            --color-5: 220 88% 62%; /* Blue */
+            --button-border-width: calc(0.08 * 1rem);
+            --glow-blur: calc(0.8 * 1rem);
+            --dark-card-bg: #1F2937; /* Dark Gray for consistency */
+            --hero-bg: #030303; /* New hero background */
+            --shape-blur: 2px; /* Simplified blur */
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: var(--hero-bg); /* Apply base bg */
+        }
+        /* Electric Blue Accent: ~ #3B82F6 */
+        .dark-card {
+            background-color: var(--dark-card-bg);
+        }
+        .accent-blue {
+            color: #3B82F6;
+        }
+        .text-gradient-blue {
+            background: linear-gradient(90deg, #60A5FA, #3B82F6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .stryv-gradient .try-gradient {
+            background: linear-gradient(90deg, #3B82F6, #818CF8); /* Adjusted Stryv gradient */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        /* New H1 Gradients */
+        .text-gradient-h1-main {
+             background: linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.8));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .text-gradient-h1-sub {
+             background: linear-gradient(to right, #a5b4fc, rgba(255,255,255,0.9), #f9a8d4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        /* Shimmer Effect */
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+            /* Ensure gradient is visible */
+             background: linear-gradient(90deg, #ffffff, #a7c5f9, #ffffff); /* White-Blue-White gradient */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 100%;
+            animation: shimmer 4s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2); /* Blueish shadow */
+        }
+        .waitlist-button {
+             background: linear-gradient(90deg, #3B82F6, #2563EB);
+             transition: all 0.3s ease;
+        }
+        .waitlist-button:hover {
+             background: linear-gradient(90deg, #2563EB, #3B82F6);
+             box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        /* Simplified pulse or remove if too distracting */
+        /* .pulse-button { ... } */
+        /* @keyframes pulse { ... } */
+
+        /* Rainbow Button Implementation */
+        @keyframes rainbow {
+          to {
+            background-position: 200%;
+          }
+        }
+        .rainbow-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            font-weight: 600;
+            color: white;
+            border: var(--button-border-width) solid transparent;
+            background-clip: padding-box, border-box, border-box;
+            background-origin: border-box;
+            background-size: 200%;
+            animation: rainbow 2s linear infinite;
+            background-image: linear-gradient(var(--dark-card-bg), var(--dark-card-bg)),
+                              linear-gradient(rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.05) 50%, transparent),
+                              linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)));
+            transition: all 0.3s ease;
+        }
+
+        .rainbow-button::before {
+            content: "";
+            position: absolute;
+            bottom: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 20%;
+            z-index: -1;
+            background: linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)));
+            background-size: 200%;
+            filter: blur(var(--glow-blur));
+            animation: rainbow 2s linear infinite;
+        }
+         .rainbow-button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+        }
+        .rainbow-button:disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        /* Custom style for the email input to match button */
+        .waitlist-input {
+            background-color: var(--dark-card-bg);
+            border-color: #374151; /* border-gray-700 */
+        }
+
+        /* Elegant Geometric Shapes */
+        @keyframes elegant-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-100px) rotate(var(--start-rotate, 0deg));
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotate(var(--end-rotate, 0deg));
+            }
+        }
+        @keyframes elegant-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(15px); }
+        }
+
+        .elegant-shape-wrapper {
+            position: absolute;
+            opacity: 0; /* Start hidden */
+            animation: elegant-fade-in 2.4s cubic-bezier(0.23, 0.86, 0.39, 0.96) forwards;
+            animation-delay: var(--delay, 0s);
+            /* Apply rotation here for fade-in */
+            --start-rotate: calc(var(--end-rotate, 0deg) - 15deg);
+            transform: rotate(var(--end-rotate, 0deg)); /* Set final rotation */
+        }
+
+        .elegant-shape-inner {
+            animation: elegant-float 12s ease-in-out infinite;
+            position: relative;
+            width: var(--width, 400px);
+            height: var(--height, 100px);
+        }
+
+        .elegant-shape-gradient {
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px; /* rounded-full */
+            /* Gradient defined by inline style or specific class */
+            background-image: linear-gradient(to right, var(--gradient-from, rgba(255,255,255,0.1)), transparent);
+            /* Simplified blur */
+            filter: blur(var(--shape-blur));
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);
+            overflow: hidden; /* To contain the ::after pseudo-element */
+        }
+
+        .elegant-shape-gradient::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10; /* Ensure content above shapes */
+        }
+
+         /* Optional Hero background overlays */
+        .hero-overlay-1 {
+            position: absolute; inset: 0;
+             background: linear-gradient(to bottom right, rgba(129, 140, 248, 0.05), transparent, rgba(244, 114, 182, 0.05)); /* indigo to rose */
+            filter: blur(48px); /* blur-3xl */
+            z-index: 1;
+        }
+        .hero-overlay-2 {
+             position: absolute; inset: 0;
+             background: linear-gradient(to top, var(--hero-bg), transparent 40%, rgba(3,3,3,0.8)); /* fade from bottom and top */
+             pointer-events: none;
+             z-index: 5;
+        }
+
+        /* Navigation Styles */
+        #main-nav {
+            transition: background-color 0.4s ease-out, border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+            background-color: transparent;
+            border-bottom-color: transparent;
+            box-shadow: none;
+        }
+        #main-nav.nav-scrolled {
+            background-color: var(--dark-card-bg);
+            border-bottom-color: #374151; /* border-gray-700 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+        }
+        /* Bolder Logo */
+        #main-nav .nav-logo {
+             font-weight: 800; /* font-extrabold */
+        }
+         /* Link Styling */
+        #main-nav .nav-link {
+            transition: color 0.2s ease-in-out;
+            font-weight: 600; /* semibold */
+            padding: 5px 0;
+            position: relative;
+        }
+        #main-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 2px;
+            right: 0;
+            background: #3B82F6; /* accent-blue */
+            transition: width .3s ease;
+            -webkit-transition: width .3s ease;
+        }
+        #main-nav .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+            background-color: #60A5FA;
+        }
+        #main-nav .nav-link:hover {
+             color: white;
+        }
+
+        /* Enhanced Feature Card Styles */
+        .feature-card {
+            /* Use dark-card bg, add padding, border, etc. */
+            background-color: var(--dark-card-bg);
+            padding: 2rem; /* p-8 */
+            border-radius: 0.75rem; /* rounded-xl */
+            text-align: center;
+            border: 1px solid #374151; /* border-gray-700 */
+            position: relative; /* For pseudo-elements */
+            overflow: hidden; /* Keep gradient border contained */
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth transition */
+            z-index: 1;
+        }
+
+        .feature-card::before { /* Gradient border - hidden initially */
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px; /* Border thickness */
+            background: linear-gradient(135deg, hsl(var(--color-5)), hsl(var(--color-1)), hsl(var(--color-3))); /* Rainbow gradient */
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) rotate(1.5deg) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover::before { /* Show border on hover */
+            opacity: 1;
+        }
+
+        .feature-icon {
+             font-size: 3rem; /* text-5xl */
+             margin-bottom: 1.25rem; /* mb-5 */
+             color: #3B82F6; /* accent-blue */
+             transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.15);
+            color: #60A5FA; /* Lighter blue on hover */
+        }
+
+        .feature-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: #ffffff; /* text-white */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+
+        .feature-description {
+            color: #9CA3AF; /* text-gray-400 */
+        }
+
+        /* Polished Section Title */
+        .section-title-enhanced {
+             letter-spacing: 0.05em; /* tracking-wide */
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full z-50 transition-all duration-300 border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="nav-logo text-3xl stryv-gradient">S<span class="try-gradient">try</span>v</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="nav-link text-gray-300">Features</a>
+                    <a href="#waitlist" class="nav-link text-gray-300">Get Access</a>
+                    <a href="#legal" class="nav-link text-gray-300">Legal</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section / Waitlist -->
+    <section id="waitlist" class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden bg-hero-bg">
+        <!-- Background Overlays -->
+        <div class="hero-overlay-1"></div>
+        <div class="hero-overlay-2"></div>
+
+        <!-- Elegant Shapes -->
+        <div class="elegant-shape-wrapper" style="--width: 600px; --height: 140px; --delay: 0.3s; --end-rotate: 12deg; top: 15%; left: -5%;">
+            <div class="elegant-shape-inner">
+                <div class="elegant-shape-gradient" style="--gradient-from: rgba(129, 140, 248, 0.15);"></div> <!-- Indigo -->
+            </div>
+        </div>
+        <div class="elegant-shape-wrapper" style="--width: 500px; --height: 120px; --delay: 0.5s; --end-rotate: -15deg; top: 70%; right: 0%;">
+             <div class="elegant-shape-inner">
+                <div class="elegant-shape-gradient" style="--gradient-from: rgba(244, 114, 182, 0.15);"></div> <!-- Rose -->
+            </div>
+        </div>
+         <div class="elegant-shape-wrapper" style="--width: 300px; --height: 80px; --delay: 0.4s; --end-rotate: -8deg; left: 10%; bottom: 10%;">
+             <div class="elegant-shape-inner">
+                <div class="elegant-shape-gradient" style="--gradient-from: rgba(167, 139, 250, 0.15);"></div> <!-- Violet -->
+            </div>
+        </div>
+        <div class="elegant-shape-wrapper" style="--width: 200px; --height: 60px; --delay: 0.6s; --end-rotate: 20deg; right: 20%; top: 15%;">
+             <div class="elegant-shape-inner">
+                <div class="elegant-shape-gradient" style="--gradient-from: rgba(251, 191, 36, 0.15);"></div> <!-- Amber -->
+            </div>
+        </div>
+         <div class="elegant-shape-wrapper" style="--width: 150px; --height: 40px; --delay: 0.7s; --end-rotate: -25deg; left: 25%; top: 10%;">
+             <div class="elegant-shape-inner">
+                <div class="elegant-shape-gradient" style="--gradient-from: rgba(34, 211, 238, 0.15);"></div> <!-- Cyan -->
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="hero-content max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+             <!-- Optional Badge -->
+             <!-- <div data-aos="fade-up" data-aos-delay="0" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"> ... </div> -->
+
+             <div data-aos="fade-up" data-aos-delay="100">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6 md:mb-8 tracking-tight">
+                    <span class="block text-gradient-h1-main shimmer-effect">Unlock Your Potential</span>
+                    <span class="block text-gradient-h1-sub mt-2">AI-Powered Fitness Coaching</span>
+                </h1>
+             </div>
+
+            <div data-aos="fade-up" data-aos-delay="200">
+                <p class="text-base sm:text-lg md:text-xl text-white/60 mb-10 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
+                    Join the waitlist for Stryv. Get personalized workouts, real-time form analysis, and intelligent progress tracking.
+                </p>
+             </div>
+
+             <!-- Waitlist Form -->
+             <div class="mt-10 max-w-md mx-auto" data-aos="fade-up" data-aos-delay="300">
+                <form class="flex shadow-lg">
+                    <input type="email" placeholder="Enter your email address" class="waitlist-input flex-grow px-4 py-3 text-white border rounded-l-xl focus:outline-none focus:border-blue-500 placeholder-gray-400 text-lg" required>
+                    <button type="submit" class="rainbow-button py-3 font-bold rounded-r-xl">
+                        Notify Me <span class="ml-1">→</span>
+                    </button>
+                </form>
+            </div>
+
+             <!-- App Store Buttons -->
+              <div class="flex justify-center space-x-4 mt-12 opacity-70" data-aos="fade-up" data-aos-delay="400">
+                 <a href="#" class="bg-gray-800 text-white px-5 py-2 rounded-lg inline-flex items-center cursor-not-allowed transition-opacity hover:opacity-90" title="Coming Soon to App Store">
+                    <i class="fab fa-apple text-2xl mr-2"></i>
+                    <div class="text-left">
+                        <div class="text-xs">Coming Soon</div>
+                        <div class="text-lg font-semibold">App Store</div>
+                    </div>
+                </a>
+                <a href="#" class="bg-gray-800 text-white px-5 py-2 rounded-lg inline-flex items-center cursor-not-allowed transition-opacity hover:opacity-90" title="Coming Soon to Google Play">
+                    <i class="fab fa-google-play text-2xl mr-2"></i>
+                    <div class="text-left">
+                        <div class="text-xs">Coming Soon</div>
+                        <div class="text-lg font-semibold">Google Play</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-hero-bg border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title-enhanced text-4xl font-bold text-center text-white mb-16 text-gradient-blue" data-aos="fade-up">Engineered for Your Performance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h3 class="feature-title">Hyper-Personalized AI</h3>
+                    <p class="feature-description">Workouts tailored to your goals, experience, and real-time performance.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon"><i class="fas fa-video"></i></div>
+                    <h3 class="feature-title">Real-Time Form Analysis</h3>
+                    <p class="feature-description">Our AI analyzes your movement via camera to ensure correct form and prevent injury.</p>
+                </div>
+                 <!-- Card 3 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3 class="feature-title">Intelligent Analytics</h3>
+                    <p class="feature-description">Track meaningful progress with smart analytics that go beyond reps and sets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Section -->
+    <section id="legal" class="py-20 bg-hero-bg border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-white mb-12" data-aos="fade-up">The Fine Print</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="p-6 rounded-lg dark-card border border-gray-700 hover:border-blue-500 transition-colors duration-300" data-aos="fade-right">
+                    <h3 class="text-xl font-semibold text-white mb-4">Privacy Policy</h3>
+                    <p class="text-gray-400 mb-4">Your data privacy is paramount. See how we protect it.</p>
+                    <a href="privacy-policy.html" target="_blank" class="accent-blue hover:text-blue-400 font-medium">Read Privacy Policy →</a>
+                </div>
+                <div class="p-6 rounded-lg dark-card border border-gray-700 hover:border-blue-500 transition-colors duration-300" data-aos="fade-left">
+                    <h3 class="text-xl font-semibold text-white mb-4">Terms of Service</h3>
+                    <p class="text-gray-400 mb-4">The rules of engagement for using Stryv.</p>
+                    <a href="terms-of-service.html" target="_blank" class="accent-blue hover:text-blue-400 font-medium">Read Terms of Service →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-hero-bg text-gray-400 py-10 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center pb-8 mb-8">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <span class="text-3xl font-bold stryv-gradient">S<span class="try-gradient">try</span>v</span>
+                    <p class="text-gray-500 text-sm mt-1">Revolutionizing Fitness with AI.</p>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="text-gray-500 hover:text-white transition duration-200"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition duration-200"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition duration-200"><i class="fab fa-facebook fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Stryv. All rights reserved. | <a href="privacy-policy.html" class="hover:text-gray-300 hover:underline">Privacy Policy</a> | <a href="terms-of-service.html" class="hover:text-gray-300 hover:underline">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Navbar Scroll Logic
+        const nav = document.getElementById('main-nav');
+        const scrollThreshold = 50; // Pixels scrolled before changing nav
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > scrollThreshold) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // AOS Initialization
+        AOS.init({ duration: 1000, once: true });
+
+    </script>
+</body>
+</html> 
