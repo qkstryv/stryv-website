@@ -375,6 +375,67 @@
         .submission-error {
             color: #F87171; /* text-red-400 */
         }
+        
+        /* Video container styles */
+        .video-container {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-container:hover {
+            transform: scale(1.02);
+        }
+        
+        .video-container::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-1)));
+            border-radius: inherit;
+            padding: 2px;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+            animation: rainbow 3s linear infinite;
+            background-size: 400%;
+            opacity: 0.7;
+        }
+        
+        /* Film grain texture overlay for video */
+        .video-texture {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            mix-blend-mode: overlay;
+            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 2;
+            border-radius: inherit;
+        }
+        
+        /* Video controls styling */
+        video::-webkit-media-controls-panel {
+            background-image: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.5), transparent);
+        }
+        
+        video::-webkit-media-controls-play-button {
+            background-color: rgba(59, 130, 246, 0.7);
+            border-radius: 50%;
+        }
+        
+        .video-section-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="text-gray-200">
@@ -388,6 +449,7 @@
                  </div>
                  <div class="hidden md:flex items-center space-x-8">
                      <a href="#features" class="nav-link text-gray-300">Features</a>
+                     <a href="#feature-video" class="nav-link text-gray-300">Demo</a>
                      <a href="#waitlist" class="nav-link text-gray-300">Get Access</a>
                      <a href="#legal" class="nav-link text-gray-300">Legal</a>
                  </div>
@@ -486,6 +548,51 @@
         </div>
     </section>
 
+    <!-- Feature Video Section -->
+    <section id="feature-video" class="py-20 bg-hero-bg relative overflow-hidden border-t border-gray-700/50">
+        <div class="video-section-gradient"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="section-title-enhanced text-4xl font-bold text-white mb-6 text-gradient-blue">See <span class="stryv-text-gradient">Stryv</span> in Action</h2>
+                <p class="text-white/70 max-w-2xl mx-auto">Experience how Stryv seamlessly integrates with your fitness journey, providing real-time guidance and tracking.</p>
+            </div>
+            
+            <div class="video-container rounded-xl overflow-hidden shadow-2xl border border-gray-700/50 mx-auto max-w-4xl" data-aos="zoom-in" data-aos-delay="100">
+                <!-- Video with poster (optional) and controls -->
+                <video 
+                    class="w-full h-auto" 
+                    controls 
+                    autoplay
+                    muted
+                    loop
+                    playsinline>
+                    <source src="stryv_feature_graphic.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <!-- Film grain texture overlay -->
+                <div class="video-texture"></div>
+            </div>
+            
+            <div class="text-center mt-10" data-aos="fade-up" data-aos-delay="200">
+                <a href="#waitlist" class="inline-flex items-center rainbow-button py-3 px-6 rounded-xl text-white font-semibold hover:shadow-lg">
+                    Get Early Access <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Background visual elements -->
+        <div class="elegant-shape-wrapper" style="--width: 400px; --height: 100px; --delay: 0.2s; --end-rotate: -5deg; bottom: -10%; left: 20%;">
+            <div class="elegant-shape-inner">
+                <div class="elegant-shape-gradient" style="--gradient-from: rgba(129, 140, 248, 0.1);"></div>
+            </div>
+        </div>
+        <div class="elegant-shape-wrapper" style="--width: 300px; --height: 80px; --delay: 0.3s; --end-rotate: 10deg; top: 10%; right: 10%;">
+            <div class="elegant-shape-inner">
+                <div class="elegant-shape-gradient" style="--gradient-from: rgba(244, 114, 182, 0.1);"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section id="features" class="py-24 bg-hero-bg border-t border-gray-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -566,6 +673,29 @@
                 nav.classList.add('nav-scrolled');
             } else {
                 nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Video scrolling effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoSection = document.getElementById('feature-video');
+            const videoContainer = document.querySelector('.video-container');
+
+            if (videoSection && videoContainer) {
+                window.addEventListener('scroll', () => {
+                    // Only apply effect when the video is visible
+                    const videoSectionTop = videoSection.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (videoSectionTop < windowHeight && videoSectionTop > -videoSection.offsetHeight) {
+                        const scrollPosition = videoSectionTop / windowHeight;
+                        const scale = 1 + Math.min(Math.max(scrollPosition * 0.05, 0), 0.05);
+                        const opacity = 1 - Math.abs(scrollPosition * 0.5);
+                        
+                        videoContainer.style.transform = `scale(${scale})`;
+                        videoContainer.style.opacity = Math.max(opacity, 0.5);
+                    }
+                });
             }
         });
 
