@@ -1078,7 +1078,7 @@
                 </div>
             </div>
             <div class="text-center text-gray-500 text-sm">
-                <p>&copy; 2025 Stryv. All rights reserved. | <a href="privacy-policy.html" class="hover:text-gray-300 hover:underline">Privacy Policy</a> | <a href="terms-of-service.html" class="hover:text-gray-300 hover:underline">Terms of Service</a> | Contact: <a href="mailto:stryvcontact@gmail.com" class="hover:text-gray-300 hover:underline">stryvcontact@gmail.com</a></p>
+                <p>&copy; 2025 Stryv. All rights reserved. | KURD CORP LTD | <a href="privacy-policy.html" class="hover:text-gray-300 hover:underline">Privacy Policy</a> | <a href="terms-of-service.html" class="hover:text-gray-300 hover:underline">Terms of Service</a> | Contact: <a href="mailto:stryvcontact@gmail.com" class="hover:text-gray-300 hover:underline">stryvcontact@gmail.com</a></p>
             </div>
         </div>
     </footer>
@@ -1117,9 +1117,13 @@
             // Handle sticky CTA
             const stickyCta = document.getElementById('sticky-cta');
             const heroSection = document.getElementById('waitlist');
-            if (stickyCta && heroSection) {
+            const footer = document.querySelector('footer'); // Get the footer element
+            
+            if (stickyCta && heroSection && footer) {
                 const heroBottom = heroSection.getBoundingClientRect().bottom;
-                if (heroBottom < 0) {
+                const isScrolledToBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - footer.offsetHeight; // Check if scrolled to footer
+
+                if (heroBottom < 0 && !isScrolledToBottom) { // Show if hero is passed and not at footer
                     stickyCta.classList.add('visible');
                 } else {
                     stickyCta.classList.remove('visible');
